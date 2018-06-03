@@ -493,7 +493,6 @@ std::tuple<Matrix<double>, std::vector<size_t>> MainStage(
         }
 
         // replace in A_basis:
-//        GetInverted(A_basis, A_basis_inversed, A.col(J_basis.at(theta_min_index)), j0, A_basis_inversed);
         for (size_t i = 0; i < A.Rows(); i ++) {
             A_basis(i, theta_min_index) = A(i, J_basis.at(theta_min_index));
         }
@@ -539,8 +538,6 @@ InitialStage(const Matrix<double>& A_matrix, const Matrix<double>& b_vector, con
     auto m = A_matrix.Rows();
     auto n = A_matrix.Cols();
 
-//    std::cout << m;
-
     auto A = A_matrix;
     auto b = b_vector;
     auto c_row = c_row_vector;
@@ -564,7 +561,6 @@ InitialStage(const Matrix<double>& A_matrix, const Matrix<double>& b_vector, con
         A_extend(i, i + n) = 1;
     }
 
-//    A_extend << A, MatrixXd::Identity(m, m);
     std::cout << "A_extend: " << std::endl
               << A_extend << std::endl;
 
@@ -582,7 +578,6 @@ InitialStage(const Matrix<double>& A_matrix, const Matrix<double>& b_vector, con
     for (size_t i = 0; i < b.Cols(); i ++) {
         x_extend(i + A.Cols()) = b(i);
     }
-//    x_extend << RowVectorXd::Zero(A.cols()), b;
     std::cout << "x_extend: " << std::endl
               << x_extend << std::endl;
 
@@ -681,15 +676,6 @@ InitialStage(const Matrix<double>& A_matrix, const Matrix<double>& b_vector, con
     return std::make_tuple(A, result_x, J_basis_extend);
 }
 
-//template <typename T>
-//friend std::ostream& operator <<(std::ostream& os, const std::vector<T>& vec) {
-//    for (auto & v : vec) {
-//        os << v << " ";
-//    }
-//    os << "\n";
-//    return os;
-//}
-
 int test_1() {
     Matrix<double> A ({
             {0, 1,  4,  1, 0,  -3, 5,  0},
@@ -706,24 +692,19 @@ int test_1() {
     Matrix<double> b ({{
             6, 10, -2, -2, 15
     }});
-//    b = b.GetT();
 
     Matrix<double> c ({{
             -5, -2, 3, -4, -6, 0, -1, -5
     }});
-//    c = c.GetT();
 
     Matrix<double> x ({{
             4, 0, 0, 6, 2, 0, 0, 5
     }});
-//    x = x.GetT();
 
     std::vector<size_t> J_basis {
             0, 3, 4, 7
     };
 
-//    MainStage(A, c, x, J_basis);
-//    exit(0);
 
     Matrix<double> newA;
     Matrix<double> newX;
@@ -735,7 +716,6 @@ int test_1() {
 
     std::cout << "Answer:" << std::endl;
     std::cout << "x: " << x << std::endl;
-//    std::cout << "J_basis" << J_basis << std::endl;
 
     return 0;
 }
@@ -781,7 +761,6 @@ int test_2() {
 
 
 int test_3() {
-//    SimplexSolver simplexSolver;
     Matrix<double> A({
                              {0, 1,  4,  1, 0,  -8, 1,  5},
                              {0, -1, 0,  -1, 0,  0,  0,  0},
@@ -817,7 +796,6 @@ int test_3() {
 }
 
 int test_4() {
-//    SimplexSolver simplexSolver;
     Matrix<double> A({
                              {0, 1,  1, 1,    0,  -8, 1,    5},
                              {0, -1, 0, -7.5, 0,  0,  0,    2},
@@ -852,7 +830,6 @@ int test_4() {
 }
 
 int test_5() {
-//    SimplexSolver simplexSolver;
     Matrix<double> A({
                              {0, 1,  1,  -7.5, 0,  0, 0,  2},
                              {0, 2, 1, 0, -1, 3, -1.5, 0},
